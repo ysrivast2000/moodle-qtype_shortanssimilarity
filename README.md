@@ -1,25 +1,8 @@
-# Question type template
+# Short Answer Similarity Calculator
 
-A clone of Jamie Pratts [Question type template](https://github.com/jamiepratt/moodle-qtype_TEMPLATE)
+This plugin is a moodle question type that can be added to any moodle quiz.
 
-Except with more features (or at least more template features)
-
-A simple question type template.
-
-It is a copy of the shortanswer question type with everything unnecessary removed and :
-
-* countback grading
-* hints
-* question text
-* no input controls at all in question as yet
-* it doesn't install any new tables
-
-Additional features by comparisons with Jamies version
-
-* db folder and files
-* backup template code
-* xml import/export code
-* mobile app support
+The plugin extracts the text from the answer provided by teacher and from the student's response. Once the two strings are extracted, the similarity between the two multi-sentences is calculated by the VIP Research Group's multi sentence similarity calculator web service.
 
 ## Additional advice can be found here 
 
