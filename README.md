@@ -4,7 +4,7 @@ This plugin is a moodle question type that can be added to any moodle quiz.
 
 The plugin extracts the text from the answer provided by teacher and from the student's response. Once the two strings are extracted, the similarity between the two multi-sentences is calculated by the VIP Research Group's multi sentence similarity calculator web service.
 
-## Additional advice can be found here 
+## Installation
 
 https://github.com/marcusgreen/moodle-qtype_TEMPLATE/wiki
 
