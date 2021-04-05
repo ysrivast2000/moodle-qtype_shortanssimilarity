@@ -15,7 +15,7 @@ root of your Moodle install:
 
 ### Installation From Downloaded zip file
 
-Alternatively, download the zip (can be found at): https://github.com/ysriavst2000/moodle-qtype_shortanssimilarity
+Alternatively, download the zip (can be found at): https://github.com/ysrivast2000/moodle-qtype_shortanssimilarity
 
 unzip it into the question/type folder, and then rename the new folder to shortanssimilairty.
 
