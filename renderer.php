@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Similaririty Calcualtor question renderer class.
+ * Short Answer Similarity question renderer class.
  *
  * @package    qtype
  * @subpackage shortanssimilarity
