@@ -21,9 +21,11 @@ unzip it into the question/type folder, and then rename the new folder to shorta
 
 ## How To Use
 
-If properly installed, when adding questions to a quiz, the option to add a "Short Answer Similarity" question should be available. Fill in the required form data and save the question
+If properly installed, when adding questions to a quiz in Moodle, the option to add a "Short Answer Similarity" question should be available. Fill in the required form data and save the question
 
-## Manual Marking on or off?
+### Manual Marking on or off?
+
+This section explains the option to turn manual marking on or off in the question creation page.
 
 - Maunal Marking: Requires cron. If the manual marking option is set to yes, this question will default to maunal marking and the question will be marked in the background. Once the question is finished marking, the question text will be updated with the result (This will be visible to both teachers and students but will not actually mark the question). From there the teacher can review the question and update the mark. Use IF the provided answer (Key Text) is longer than 2 sentences.
 
