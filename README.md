@@ -1,4 +1,4 @@
-# Short Answer Similarity Calculator
+# Short Answer Similarity Question Type
 
 This plugin is a moodle question type that can be added to any moodle quiz.
 
@@ -19,16 +19,12 @@ Alternatively, download the zip (can be found at): https://github.com/ysrivast20
 
 unzip it into the question/type folder, and then rename the new folder to shortanssimilairty.
 
-## Who should use
+## How To Use
 
-This is one alternative start for devloping a question type plug in and is working code as is. Although it doesn't do any actual
-grading or collect student input at all.
+If properly installed, when adding questions to a quiz, the option to add a "Short Answer Similarity" question should be available. Fill in the required form data and save the question
 
-Depending on what type of question plug in you want to develope it might be good to either :
+## Manual Marking on or off?
 
-* use one of the existing question types that is doing something similar to what you want to do as a base, copy that,
-have fun deleting no longer needed code and you then have a template to start from.
-* or if possible to avoid code duplication it is better to extend existing classes, particularly for the question type and
-question classes. There are quite a few examples of queston types that do this at https://github.com/moodleou/.
-        for example classes in ddimageortext and ddmarker both inherit from common code in ddimageortext and those inherit code from the gapselect question type
-* or this code might help start you off.
+- Maunal Marking: Requires cron. If the manual marking option is set to yes, this question will default to maunal marking and the question will be marked in the background. Once the question is finished marking, the question text will be updated with the result (This will be visible to both teachers and students but will not actually mark the question). From there the teacher can review the question and update the mark. Use IF the provided answer (Key Text) is longer than 2 sentences.
+
+- Automatic Marking: Does not require cron. If the manual marking option to no, then will use automatic marking. Although, load times will be drastically longer (can last 10 minutes per question, if responses are compilcated). Therefore we recommend this option be set to no, IF the answer (Key Text) is less then or equal to 2 sentences.';
