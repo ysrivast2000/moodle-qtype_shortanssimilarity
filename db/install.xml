@@ -10,9 +10,9 @@
         <FIELD NAME="questionid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Foreign key references question.id" />
         <FIELD NAME="key_text" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="The answer portion of this item"/>
         <FIELD NAME="item_language" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="The languagee of this item"/>
-        <FIELD NAME="result" TYPE="number" LENGTH="15" DECIMALS="14" NOTNULL="true" DEFUALT="0" SEQUENCE="false" COMMENT="The simiarity score of this item"/>
-        <FIELD NAME="finished" TYPE="int" LENGTH="2" NOTNULL="true" DEFUALT="0" SEQUENCE="false" COMMENT="If the question has finished marking"/>
-        <FIELD NAME="manual_grading" TYPE="int" LENGTH="2" NOTNULL="true" DEFUALT="0" SEQUENCE="false" COMMENT="If the question should be marked with cron and require a manual review"/>
+        <FIELD NAME="result" TYPE="number" LENGTH="15" DECIMALS="14" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The simiarity score of this item"/>
+        <FIELD NAME="finished" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="If the question has finished marking"/>
+        <FIELD NAME="manual_grading" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="If the question should be marked with cron and require a manual review"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
@@ -24,9 +24,9 @@
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" />
         <FIELD NAME="questionid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Foreign key references qtype_shortanswersimilarity.id" />
         <FIELD NAME="item_language" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="The languagee of this item"/>
-        <FIELD NAME="result" TYPE="number" LENGTH="15" DECIMALS="14" NOTNULL="true" DEFUALT="0" SEQUENCE="false" COMMENT="The simiarity score of this item"/>
-        <FIELD NAME="finished" TYPE="int" LENGTH="2" NOTNULL="true" DEFUALT="0" SEQUENCE="false" COMMENT="If the question has finished marking"/>
-        <FIELD NAME="manual_grading" TYPE="int" LENGTH="2" NOTNULL="true" DEFUALT="0" SEQUENCE="false" COMMENT="If the question should be marked with cron and require a manual review"/>
+        <FIELD NAME="result" TYPE="number" LENGTH="15" DECIMALS="14" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The simiarity score of this item"/>
+        <FIELD NAME="finished" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="If the question has finished marking"/>
+        <FIELD NAME="manual_grading" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="If the question should be marked with cron and require a manual review"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

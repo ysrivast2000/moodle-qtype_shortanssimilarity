@@ -25,7 +25,10 @@
 
 
 defined('MOODLE_INTERNAL') || die();
-require_once($CFG->dirroot . '/question/type/shortanssimilarity/classes/task/calculator.php');
+
+
+
+// require_once($CFG->dirroot . '/question/type/shortanssimilarity/classes/task/calculator.php');
 require_once($CFG->dirroot . '/question/type/questionbase.php');
 
 /**
@@ -250,7 +253,7 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
     public function calculate_simularity($question, $response) {
         global $DB;
 
-        $task = new qtype_shortanssimilarity\task\calculator();
+        $task = new calculator;
         $task->set_custom_data(array(
             'key' => $question->key_text,
             'target' => $response['answer'],
@@ -299,7 +302,14 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
         $context  = stream_context_create($context);
 
         // Use file_get_get_contents and json_decode to capture response.
-        $contents = file_get_contents('https://ws-nlp.vipresearch.ca/bridge/v1/', false, $context);
+
+        /**
+         * NOTE: Bridge v1 does not work here as the required parameters are not satisfied.
+         *
+         *
+         */
+
+        $contents = file_get_contents('https://ws-nlp.vipresearch.ca/bridge/v2/', false, $context);
         $contents = json_decode($contents);
 
         // Update database with new values.
