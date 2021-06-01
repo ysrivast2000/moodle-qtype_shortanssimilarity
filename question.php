@@ -253,7 +253,7 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
     public function calculate_simularity($question, $response) {
         global $DB;
 
-        $task = new calculator;
+          $task =  new qtype_shortanssimilarity\calculator();
         $task->set_custom_data(array(
             'key' => $question->key_text,
             'target' => $response['answer'],
