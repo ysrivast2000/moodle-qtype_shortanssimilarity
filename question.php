@@ -305,11 +305,11 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
 
         /**
          * NOTE: Bridge v1 does not work here as the required parameters are not satisfied.
-         *
+         * NOTE: URL was change from ".../bridge/v2/" to ".../bridge/".
          *
          */
 
-        $contents = file_get_contents('https://ws-nlp.vipresearch.ca/bridge/v2/', false, $context);
+        $contents = file_get_contents('https://ws-nlp.vipresearch.ca/bridge/', false, $context);
         $contents = json_decode($contents);
 
         // Update database with new values.

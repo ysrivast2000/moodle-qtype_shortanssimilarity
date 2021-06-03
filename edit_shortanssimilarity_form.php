@@ -41,7 +41,7 @@ class qtype_shortanssimilarity_edit_form extends question_edit_form {
      * @return an object that holds the supported languages
      */
     public function get_languages() {
-        $url = "https://ws-nlp.vipresearch.ca/language_list.php";
+        $url = "https://ws-nlp.vipresearch.ca/bridge/language_list.php";
         $json = file_get_contents($url);
         $json = json_decode($json);
         return $json;
