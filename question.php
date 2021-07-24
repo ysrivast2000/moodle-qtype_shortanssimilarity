@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 
 
 
-// require_once($CFG->dirroot . '/question/type/shortanssimilarity/classes/task/calculator.php');
+// ...require_once($CFG->dirroot . '/question/type/shortanssimilarity/classes/task/calculator.php');.
 require_once($CFG->dirroot . '/question/type/questionbase.php');
 
 /**
@@ -253,7 +253,7 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
     public function calculate_simularity($question, $response) {
         global $DB;
 
-          $task =  new qtype_shortanssimilarity\calculator();
+          $task = new qtype_shortanssimilarity\calculator();
         $task->set_custom_data(array(
             'key' => $question->key_text,
             'target' => $response['answer'],
@@ -301,7 +301,6 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
         // $contents = file_get_contents('https://ws-nlp.vipresearch.ca/bridge/', false, $context);
         $url = "https://ws-nlp.vipresearch.ca/bridge/";
 
-
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -312,10 +311,9 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         $result = curl_exec($ch);
         curl_close($ch);
-        if($result==NULL){
+        if ($result == null) {
           $contents->similarity = 0;
-        }
-        else{
+        } else {
           $contents = json_decode($result);
         }
         // Update database with new values.

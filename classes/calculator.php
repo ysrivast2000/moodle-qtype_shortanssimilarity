@@ -66,8 +66,6 @@ class calculator extends \core\task\adhoc_task {
         );
 
         $json = json_encode($json);
-
-
         // Use file_get_get_contents and json_decode to capture response.
         $url = "https://ws-nlp.vipresearch.ca/bridge/v1/";
 
@@ -81,14 +79,11 @@ class calculator extends \core\task\adhoc_task {
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         $result = curl_exec($ch);
         curl_close($ch);
-        if($result==NULL){
+        if ($result == null) {
           $contents->similarity = 0;
-        }
-        else{
+        } else {
           $contents = json_decode($result);
         }
-        // $contents = json_decode($result);
-
         // Update database with new values.
         $options = $DB->get_record('qtype_shortanssimilarity', array('id' => $data->id));
         $options->result = (string) $contents->similarity;
