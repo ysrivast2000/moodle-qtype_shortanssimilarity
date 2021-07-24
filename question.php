@@ -292,26 +292,32 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
 
         $json = json_encode($json);
 
-        $context = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-Type: application/json',
-                'content' => $json
-            )
-        );
-        $context  = stream_context_create($context);
-
-        // Use file_get_get_contents and json_decode to capture response.
-
         /**
          * NOTE: Bridge v1 does not work here as the required parameters are not satisfied.
          * NOTE: URL was change from ".../bridge/v2/" to ".../bridge/".
          *
          */
 
-        $contents = file_get_contents('https://ws-nlp.vipresearch.ca/bridge/', false, $context);
-        $contents = json_decode($contents);
+        // $contents = file_get_contents('https://ws-nlp.vipresearch.ca/bridge/', false, $context);
+        $url = "https://ws-nlp.vipresearch.ca/bridge/";
 
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        $result = curl_exec($ch);
+        curl_close($ch);
+        if($result==NULL){
+          $contents->similarity = 0;
+        }
+        else{
+          $contents = json_decode($result);
+        }
         // Update database with new values.
         $options = $DB->get_record('qtype_shortanssimilarity', array('id' => $question->id));
         $options->result = $contents->similarity;

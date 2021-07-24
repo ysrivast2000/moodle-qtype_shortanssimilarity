@@ -43,7 +43,6 @@ class calculator extends \core\task\adhoc_task {
         return 'qtype_shortanssimilarity';
     }
 
-
     /**
      * Get the language string identifier with the component's language
      * file to explain why this plugin stores no data.
@@ -68,18 +67,27 @@ class calculator extends \core\task\adhoc_task {
 
         $json = json_encode($json);
 
-        $context = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-Type: application/json',
-                'content' => $json
-            )
-        );
-        $context  = stream_context_create($context);
 
         // Use file_get_get_contents and json_decode to capture response.
-        $contents = file_get_contents('https://ws-nlp.vipresearch.ca/bridge/v1/', false, $context);
-        $contents = json_decode($contents);
+        $url = "https://ws-nlp.vipresearch.ca/bridge/v1/";
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        $result = curl_exec($ch);
+        curl_close($ch);
+        if($result==NULL){
+          $contents->similarity = 0;
+        }
+        else{
+          $contents = json_decode($result);
+        }
+        // $contents = json_decode($result);
 
         // Update database with new values.
         $options = $DB->get_record('qtype_shortanssimilarity', array('id' => $data->id));
