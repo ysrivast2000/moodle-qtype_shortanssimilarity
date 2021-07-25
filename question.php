@@ -28,7 +28,6 @@ defined('MOODLE_INTERNAL') || die();
 
 
 
-// ...require_once($CFG->dirroot . '/question/type/shortanssimilarity/classes/task/calculator.php');.
 require_once($CFG->dirroot . '/question/type/questionbase.php');
 
 /**
@@ -291,7 +290,6 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
         );
 
         $json = json_encode($json);
-        // $contents = file_get_contents('https://ws-nlp.vipresearch.ca/bridge/', false, $context);
         $url = "https://ws-nlp.vipresearch.ca/bridge/";
 
         $ch = curl_init($url);
