@@ -84,14 +84,12 @@ class calculator extends \core\task\adhoc_task
         ));
         $result = curl_exec($ch);
         curl_close($ch);
-        if ($result == null)
-        {
+        if ($result == null) {
             $contents->similarity = 0;
-        }
-        else
-        {
+        } else {
             $contents = json_decode($result);
         }
+
         // Update database with new values.
         $options = $DB->get_record('qtype_shortanssimilarity', array(
             'id' => $data->id
