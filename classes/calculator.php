@@ -93,3 +93,4 @@ class calculator extends \core\task\adhoc_task {
         return true;
     }
 }
+

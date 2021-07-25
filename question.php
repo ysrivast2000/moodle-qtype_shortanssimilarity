@@ -351,3 +351,4 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
     }
 
 }
+
