@@ -31,7 +31,8 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2021 Yash Srivastava - VIP Research Group (ysrivast@ualberta.ca)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class calculator extends \core\task\adhoc_task {
+class calculator extends \core\task\adhoc_task
+{
 
     /**
      * Get the language string identifier with the component's language
@@ -39,7 +40,8 @@ class calculator extends \core\task\adhoc_task {
      *
      * @return  string
      */
-    public function get_component() {
+    public function get_component()
+    {
         return 'qtype_shortanssimilarity';
     }
 
@@ -49,7 +51,8 @@ class calculator extends \core\task\adhoc_task {
      *
      * @return  float
      */
-    public function execute() {
+    public function execute()
+    {
         global $DB;
 
         // Get the data.
@@ -76,21 +79,29 @@ class calculator extends \core\task\adhoc_task {
         curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json'
+        ));
         $result = curl_exec($ch);
         curl_close($ch);
-        if ($result == null) {
-          $contents->similarity = 0;
-        } else {
-          $contents = json_decode($result);
+        if ($result == null)
+        {
+            $contents->similarity = 0;
+        }
+        else
+        {
+            $contents = json_decode($result);
         }
         // Update database with new values.
-        $options = $DB->get_record('qtype_shortanssimilarity', array('id' => $data->id));
-        $options->result = (string) $contents->similarity;
+        $options = $DB->get_record('qtype_shortanssimilarity', array(
+            'id' => $data->id
+        ));
+        $options->result = (string)$contents->similarity;
         $options->finished = 1;
         $DB->update_record('qtype_shortanssimilarity', $options);
 
         return true;
     }
 }
+
 

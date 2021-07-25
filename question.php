@@ -23,13 +23,10 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 defined('MOODLE_INTERNAL') || die();
 
-
-
 // ...require_once($CFG->dirroot . '/question/type/shortanssimilarity/classes/task/calculator.php');.
-require_once($CFG->dirroot . '/question/type/questionbase.php');
+require_once ($CFG->dirroot . '/question/type/questionbase.php');
 
 /**
  * Question type class for the short answer similarity question.
@@ -37,7 +34,8 @@ require_once($CFG->dirroot . '/question/type/questionbase.php');
  * @copyright  2021 Yash Srivatava - VIP Research Group (ysrivast@ualberta.ca)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_shortanssimilarity_question extends question_with_responses implements question_automatically_gradable {
+class qtype_shortanssimilarity_question extends question_with_responses implements question_automatically_gradable
+{
 
     /** @var int
      * Indicates whether we should mark with cron
@@ -47,18 +45,23 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
     /**
      * Set the behaviour of the question as manual graded
      */
-    public function make_behaviour(question_attempt $qa, $preferredbehaviour) {
+    public function make_behaviour(question_attempt $qa, $preferredbehaviour)
+    {
         global $DB;
 
-        $question = $DB->get_record('qtype_shortanssimilarity', array('questionid' => $this->id));
+        $question = $DB->get_record('qtype_shortanssimilarity', array(
+            'questionid' => $this->id
+        ));
 
-        if ($question->manual_grading == 1) {
+        if ($question->manual_grading == 1)
+        {
             return question_engine::make_behaviour('manualgraded', $qa, $preferredbehaviour);
-        } else {
+        }
+        else
+        {
             return question_engine::make_archetypal_behaviour($preferredbehaviour, $qa);
         }
     }
-
 
     /**
      * Data to be included in the form submission when a student submits the question
@@ -66,16 +69,19 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
      *
      * @return array
      */
-    public function get_expected_data() {
-        return array('answer' => PARAM_RAW);
+    public function get_expected_data()
+    {
+        return array(
+            'answer' => PARAM_RAW
+        );
     }
-
 
     /**
      * @param moodle_page the page we are outputting to.
      * @return qtype_essay_format_renderer_base the response-format-specific renderer.
      */
-    public function get_format_renderer(moodle_page $page) {
+    public function get_format_renderer(moodle_page $page)
+    {
         return $page->get_renderer('qtype_essay', 'FORMAT_PLAIN');
     }
 
@@ -95,106 +101,152 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
      * @param int $varant which variant of this question to start. Will be between
      *      1 and {@link get_num_variants()} inclusive.
      */
-    public function start_attempt(question_attempt_step $step, $variant) {
+    public function start_attempt(question_attempt_step $step, $variant)
+    {
         global $DB;
 
-        $question = $DB->get_record('qtype_shortanssimilarity', array('questionid' => $this->id));
+        $question = $DB->get_record('qtype_shortanssimilarity', array(
+            'questionid' => $this->id
+        ));
         $question->finished = 0;
         $question->result = 0;
         $DB->update_record('qtype_shortanssimilarity', $question);
     }
-
 
     /**
      * Produce a plain text summar of a response
      *
      * @return summary a string that summarises how the user responded. This
      * is used in the quiz responses report
-     * */
-    public function summarise_response(array $response) {
+     *
+     */
+    public function summarise_response(array $response)
+    {
         $output = null;
 
-        if (isset($response['answer'])) {
+        if (isset($response['answer']))
+        {
             $output .= get_string('summarize_repsponse_valid', 'qtype_shortanssimilarity') . $response['answer'];
-        } else {
+        }
+        else
+        {
             $output .= get_string('summarize_repsponse_invalid', 'qtype_shortanssimilarity');
         }
 
         return $output;
     }
 
-    public function un_summarise_response(string $summary) {
-        if (!empty($summary)) {
-            return array('answer' => text_to_html($summary));
-        } else {
+    public function un_summarise_response(string $summary)
+    {
+        if (!empty($summary))
+        {
+            return array(
+                'answer' => text_to_html($summary)
+            );
+        }
+        else
+        {
             return array();
         }
     }
 
-    public function get_matching_answer(array $response) {
+    public function get_matching_answer(array $response)
+    {
         global $DB;
 
-        $question = $DB->get_record('qtype_shortanssimilarity', array('questionid' => $this->id));
+        $question = $DB->get_record('qtype_shortanssimilarity', array(
+            'questionid' => $this->id
+        ));
         $fraction = $question->result;
 
-        return array('fraction' => $fraction);
+        return array(
+            'fraction' => $fraction
+        );
     }
 
-    public function using_chron() {
+    public function using_chron()
+    {
         global $DB;
 
-        $question = $DB->get_record('qtype_shortanssimilarity', array('questionid' => $this->id));
+        $question = $DB->get_record('qtype_shortanssimilarity', array(
+            'questionid' => $this->id
+        ));
 
-        if ($question->manual_grading == 1) {
+        if ($question->manual_grading == 1)
+        {
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
 
-    public function get_grade() {
+    public function get_grade()
+    {
         global $DB;
 
-        $question = $DB->get_record('qtype_shortanssimilarity', array('questionid' => $this->id));
+        $question = $DB->get_record('qtype_shortanssimilarity', array(
+            'questionid' => $this->id
+        ));
         $score = $question->result * $this->defaultmark;
         return $score;
     }
 
-    public function is_complete_response(array $response) {
+    public function is_complete_response(array $response)
+    {
         global $DB;
 
-        $question = $DB->get_record('qtype_shortanssimilarity', array('questionid' => $this->id));
+        $question = $DB->get_record('qtype_shortanssimilarity', array(
+            'questionid' => $this->id
+        ));
 
-        if (array_key_exists('answer', $response) && ($response['answer'] !== '')) {
-            if ($question->manual_grading == 1) {
-                $question = $DB->get_record('qtype_shortanssimilarity', array('questionid' => $this->id));
+        if (array_key_exists('answer', $response) && ($response['answer'] !== ''))
+        {
+            if ($question->manual_grading == 1)
+            {
+                $question = $DB->get_record('qtype_shortanssimilarity', array(
+                    'questionid' => $this->id
+                ));
                 $fraction = $this->calculate_simularity($question, $response);
             }
 
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
 
-    public function get_validation_error(array $response) {
-        if (!$this->is_complete_response($response)) {
+    public function get_validation_error(array $response)
+    {
+        if (!$this->is_complete_response($response))
+        {
             return get_string('validation_error_no_response', 'qtype_shortanssimilarity');
-        } else {
+        }
+        else
+        {
             return get_string('empty_string', 'qtype_shortanssimilarity');
         }
 
         return get_string('validation_error_error', 'qtype_shortanssimilarity');
     }
 
-    public function is_completed_marking() {
+    public function is_completed_marking()
+    {
         global $DB;
 
-        $question = $DB->get_record('qtype_shortanssimilarity', array('questionid' => $this->id));
+        $question = $DB->get_record('qtype_shortanssimilarity', array(
+            'questionid' => $this->id
+        ));
 
-        if ($question->finished == 0) {
+        if ($question->finished == 0)
+        {
             return false;
-        } else {
+        }
+        else
+        {
             $score = $question->result * $this->defaultmark;
             return true;
         }
@@ -219,41 +271,48 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
      *      whether the new set of responses can safely be discarded.
      */
 
-    public function is_same_response(array $prevresponse, array $newresponse) {
-        if (array_key_exists('answer', $prevresponse) && $prevresponse['answer'] !== '') {
-            $value1 = (string) $prevresponse['answer'];
-        } else {
+    public function is_same_response(array $prevresponse, array $newresponse)
+    {
+        if (array_key_exists('answer', $prevresponse) && $prevresponse['answer'] !== '')
+        {
+            $value1 = (string)$prevresponse['answer'];
+        }
+        else
+        {
             $value1 = '';
         }
 
-        if (array_key_exists('answer', $newresponse) && $newresponse['answer'] !== '') {
-            $value2 = (string) $newresponse['answer'];
-        } else {
+        if (array_key_exists('answer', $newresponse) && $newresponse['answer'] !== '')
+        {
+            $value2 = (string)$newresponse['answer'];
+        }
+        else
+        {
             $value2 = '';
         }
 
-        return ($value1 === $value2 || question_utils::arrays_same_at_key_missing_is_blank(
-                $prevresponse, $newresponse, 'answer'));
+        return ($value1 === $value2 || question_utils::arrays_same_at_key_missing_is_blank($prevresponse, $newresponse, 'answer'));
     }
 
-     /**
-      * @return question_answer an answer that
-      * contains the a response that would get full marks.
-      * used in preview mode. If this doesn't return a
-      * correct value the button labeled "Fill in correct response"
-      * in the preview form will not work. This value gets written
-      * into the rightanswer field of the question_attempts table
-      * when a quiz containing this question starts.
-      */
-    public function get_correct_response() {
+    /**
+     * @return question_answer an answer that
+     * contains the a response that would get full marks.
+     * used in preview mode. If this doesn't return a
+     * correct value the button labeled "Fill in correct response"
+     * in the preview form will not work. This value gets written
+     * into the rightanswer field of the question_attempts table
+     * when a quiz containing this question starts.
+     */
+    public function get_correct_response()
+    {
         return null;
     }
 
-
-    public function calculate_simularity($question, $response) {
+    public function calculate_simularity($question, $response)
+    {
         global $DB;
 
-          $task = new qtype_shortanssimilarity\calculator();
+        $task = new qtype_shortanssimilarity\calculator();
         $task->set_custom_data(array(
             'key' => $question->key_text,
             'target' => $response['answer'],
@@ -265,20 +324,24 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
 
         \core\task\manager::queue_adhoc_task($task);
 
-        $options = $DB->get_record('qtype_shortanssimilarity', array('questionid' => $question->questionid));
+        $options = $DB->get_record('qtype_shortanssimilarity', array(
+            'questionid' => $question->questionid
+        ));
         return $options->result;
     }
-
 
     /**
      * @param array $response responses, as returned by
      *      {@link question_attempt_step::get_qt_data()}.
      * @return array (number, integer) the fraction, and the state.
      */
-    public function grade_response(array $response) {
+    public function grade_response(array $response)
+    {
         global $DB;
 
-        $question = $DB->get_record('qtype_shortanssimilarity', array('questionid' => $this->id));
+        $question = $DB->get_record('qtype_shortanssimilarity', array(
+            'questionid' => $this->id
+        ));
 
         // Prepare object to be sent to VIP Research's multi-sentence
         // short answer similarity.
@@ -308,24 +371,32 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
         curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json'
+        ));
         $result = curl_exec($ch);
         curl_close($ch);
-        if ($result == null) {
-          $contents->similarity = 0;
-        } else {
-          $contents = json_decode($result);
+        if ($result == null)
+        {
+            $contents->similarity = 0;
+        }
+        else
+        {
+            $contents = json_decode($result);
         }
         // Update database with new values.
-        $options = $DB->get_record('qtype_shortanssimilarity', array('id' => $question->id));
+        $options = $DB->get_record('qtype_shortanssimilarity', array(
+            'id' => $question->id
+        ));
         $options->result = $contents->similarity;
         $options->finished = 1;
         $DB->update_record('qtype_shortanssimilarity', $options);
 
-        return array((double) $contents->similarity,
-            question_state::graded_state_for_fraction((double) $contents->similarity));
+        return array(
+            (double)$contents->similarity,
+            question_state::graded_state_for_fraction((double)$contents->similarity)
+        );
     }
-
 
     /**
      * Get one of the question hints. The question_attempt is passed in case
@@ -335,7 +406,8 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
      * @param int $hintnumber Which hint to display. Indexed starting from 0
      * @param question_attempt $qa The question_attempt.
      */
-    public function get_hint($hintnumber, question_attempt $qa) {
+    public function get_hint($hintnumber, question_attempt $qa)
+    {
         return null;
     }
 
@@ -346,9 +418,11 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
      * inappropriate.
      * @return string|null a plain text summary of the right answer to this question.
      */
-    public function get_right_answer_summary() {
+    public function get_right_answer_summary()
+    {
         return '';
     }
 
 }
+
 
