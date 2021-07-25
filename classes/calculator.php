@@ -40,7 +40,7 @@ class calculator extends \core\task\adhoc_task
      *
      * @return  string
      */
-    public function get_component(){
+    public function get_component() {
         return 'qtype_shortanssimilarity';
     }
 
@@ -50,7 +50,7 @@ class calculator extends \core\task\adhoc_task
      *
      * @return  float
      */
-    public function execute(){
+    public function execute() {
         global $DB;
 
         // Get the data.
