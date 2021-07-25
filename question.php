@@ -316,7 +316,6 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
         } else {
             $contents = json_decode($result);
         }
-        
         // Update database with new values.
         $options = $DB->get_record('qtype_shortanssimilarity', array('id' => $question->id));
         $options->result = $contents->similarity;
