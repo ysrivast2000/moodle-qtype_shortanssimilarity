@@ -38,19 +38,31 @@ require_once($CFG->dirroot . '/question/type/shortanssimilarity/question.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_shortanssimilarity extends question_type {
-
+    /**
+     * Used to move files along with questions.
+     * @param int $questionid with respect to each question id. Indexed starting from 0
+     * @param int $oldcontextid contains old context id. Indexed starting from 0
+     * @param int $newcontextid contains old newcontextid . Indexed starting from 0
+     */
     public function move_files($questionid, $oldcontextid, $newcontextid) {
         parent::move_files($questionid, $oldcontextid, $newcontextid);
         $this->move_files_answers($questionid, $oldcontextid, $newcontextid);
         $this->move_files_in_hints($questionid, $oldcontextid, $newcontextid);
     }
-
+    /**
+     * Used to delete files.
+     * @param int $questionid with respect to each question id. Indexed starting from 0
+     * @param int $oldcontextid contains old context id. Indexed starting from 0
+     */
     protected function delete_files($questionid, $contextid) {
         parent::delete_files($questionid, $contextid);
         $this->delete_files_in_answers($questionid, $contextid);
         $this->delete_files_in_hints($questionid, $contextid);
     }
-
+    /**
+     * Used to saves questions .
+     * @param $question contains questions.
+     */
     public function save_question_options($question) {
         global $DB;
 
@@ -75,10 +87,10 @@ class qtype_shortanssimilarity extends question_type {
 
         $this->save_hints($question);
     }
-
-    /*
-     * populates fields such as combined feedback
-     * also make $DB calls to get data from other tables
+    /**
+     * Used to populates fields such as combined feedback.
+     * also make $DB calls to get data from other tables.
+     * @param $question contains questions.
      */
     public function get_question_options($question) {
         global $DB;
@@ -87,7 +99,9 @@ class qtype_shortanssimilarity extends question_type {
     }
 
     /**
-     * executed at runtime (e.g. in a quiz or preview
+     * Executed at runtime (e.g. in a quiz or preview)
+     * @param $question contains the questions.
+     * @param $questiondata contains the question data.
      */
     protected function initialise_question_instance(question_definition $question, $questiondata) {
         parent::initialise_question_instance($question, $questiondata);
@@ -97,7 +111,11 @@ class qtype_shortanssimilarity extends question_type {
         $question->finished = $questiondata->options->finished;
         $question->manual_grading = $questiondata->options->manual_grading;
     }
-
+    /**
+     * Used to delete questions.
+     * @param int $questionid with respect to each question id. Indexed starting from 0
+     * @param int $oldcontextid contains old context id. Indexed starting from 0
+     */
     public function delete_questions($questionid, $contextid) {
         global $DB;
 
@@ -105,6 +123,13 @@ class qtype_shortanssimilarity extends question_type {
         parent::delete_questions($questionid, $contextid);
     }
 
+    /**
+     * Used to import data from xml.
+     * @param $data with respect to each question id. Indexed starting from 0.
+     * @param $question contains the question.
+     * @param $format contains the format type.
+     * @param $extra.
+     */
     public function import_from_xml($data, $question, qformat_xml $format, $extra = null) {
         if (!isset($data['@']['type']) || $data['@']['type'] != 'shortanssimilarity') {
             return false;
@@ -114,7 +139,12 @@ class qtype_shortanssimilarity extends question_type {
         $format->import_hints($question, $data, true, false, $format->get_format($question->questiontextformat));
         return $question;
     }
-
+    /**
+     * Used to export data from xml.
+     * @param $question contains the question.
+     * @param $format contains the format type.
+     * @param $extra.
+     */
     public function export_to_xml($question, qformat_xml $format, $extra = null) {
         global $CFG;
         $pluginmanager = core_plugin_manager::instance();
@@ -123,12 +153,17 @@ class qtype_shortanssimilarity extends question_type {
         $output .= $format->write_combined_feedback($question->options, $question->id, $question->contextid);
         return $output;
     }
-
-
+    /**
+     * Used to generate a random score.
+     * @param $questiondata contains the question data.
+     */
     public function get_random_guess_score($questiondata) {
         return 0;
     }
-
+    /**
+     * Used to generate a actual score.
+     * @param $questiondata contains the question data.
+     */
     public function get_possible_responses($questiondata) {
         return array($questiondata->options->id => $questiondata->options->key_text);
     }
