@@ -17,8 +17,7 @@
 /**
  * Short Answer Similarity question renderer class.
  *
- * @package    qtype
- * @subpackage shortanssimilarity
+ * @package    qtype_shortanssimilarity
  * @copyright  2021 Yash Srivastava - VIP Research Group (ysrivast@ualberta.ca)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -29,11 +28,17 @@ defined('MOODLE_INTERNAL') || die();
 
 /**
  * Generates the output for short answer similarity questions.
- *
+ * @package    qtype_shortanssimilarity
  * @copyright  2021 Yash Srivastava - VIP Research Group (ysrivast@ualberta.ca)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_shortanssimilarity_renderer extends qtype_renderer {
+  /**
+   * Responsible for the formulation and control.
+   * @param question_attempt $qa.
+   * @param question_display_options $options.
+   * @return string .
+   */
     public function formulation_and_controls(question_attempt $qa,
             question_display_options $options) {
 
@@ -81,12 +86,20 @@ class qtype_shortanssimilarity_renderer extends qtype_renderer {
 
         return $result;
     }
-
+    /**
+     * Responsible for the providing feedback.
+     * @param question_attempt $qa.
+     * @return string.
+     */
     public function specific_feedback(question_attempt $qa) {
         $question = $qa->get_question();
         return '';
     }
-
+    /**
+     * Responsible for the presenting correct response.
+     * @param question_attempt $qa.
+     * @return string.
+     */
     public function correct_response(question_attempt $qa) {
         $question = $qa->get_question();
         return '';

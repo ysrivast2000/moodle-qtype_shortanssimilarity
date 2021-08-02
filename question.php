@@ -17,8 +17,7 @@
 /**
  * short answer similarity question definition class.
  *
- * @package    qtype
- * @subpackage shortanssimilarity
+ * @package    qtype_shortanssimilarity
  * @copyright  2021 Yash Srivatava - VIP Research Group (ysrivast@ualberta.ca
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -342,4 +341,3 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
     }
 
 }
-

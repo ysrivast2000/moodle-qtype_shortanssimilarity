@@ -17,8 +17,7 @@
 /**
  * short answer similarity question type version information.
  *
- * @package    qtype
- * @subpackage shortanssimilarity
+ * @package    qtype_shortanssimilarity
  * @copyright  2021 Yash Srivastava - VIP Research Group (ysrivast@ualberta.ca)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

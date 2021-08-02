@@ -17,8 +17,7 @@
 /**
  * Strings for component 'qtype_similarity_calculator', language 'en', branch 'MOODLE_20_STABLE'
  *
- * @package    qtype
- * @subpackage shortanssimilarity
+ * @package    qtype_shortanssimilarity
  * @copyright  2021 Yash Srivastava - VIP Research Group (ysrivast@ualberta.ca)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

@@ -17,8 +17,7 @@
 /**
  * Defines the editing form for the similarityc alculator question type.
  *
- * @package    qtype
- * @subpackage shortanssimilarity
+ * @package    qtype_shortanssimilarity
  * @copyright  2021 Yash Srivastava - VIP Research Group (ysrivast@ualberta.ca)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -46,7 +45,11 @@ class qtype_shortanssimilarity_edit_form extends question_edit_form {
         $json = json_decode($json);
         return $json;
     }
-
+    /**
+     * Defining the whole form.
+     * @param $mform reponsible for collecting the form components.
+     * @return void.
+     */
     protected function definition_inner($mform) {
         // Add fields specific to this question type.
         $mform->addElement('textarea', 'key', 'Key Text', 'wrap="virtual" rows="10" cols="100"');
@@ -67,7 +70,11 @@ class qtype_shortanssimilarity_edit_form extends question_edit_form {
         // Adds hinting features.
         $this->add_interactive_settings(true, true);
     }
-
+    /**
+     * Defining the whole form.
+     * @param object $question containing the question data .
+     * @return object $question.
+     */
     protected function data_preprocessing($question) {
         $question = parent::data_preprocessing($question);
 
@@ -86,7 +93,11 @@ class qtype_shortanssimilarity_edit_form extends question_edit_form {
 
         return $question;
     }
-
+    /**
+     * Return the question type name.
+     * @return the question type name, should be the same as the name() method
+     *      in the question type class.
+     */
     public function qtype() {
         return 'shortanssimilarity';
     }

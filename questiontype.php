@@ -17,8 +17,7 @@
 /**
  * Question type class for the short answer similarity question type.
  *
- * @package    qtype
- * @subpackage shortanssimilarity
+ * @package    qtype_shortanssimilarity
  * @copyright  2021 Yash Srivastava - VIP Research Group (ysrivast@ualberta.ca)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -62,7 +61,7 @@ class qtype_shortanssimilarity extends question_type {
     }
     /**
      * Used to saves questions.
-     * @param $question contains questions.
+     * @param object $question contains questions.
      * @return void.
      */
     public function save_question_options($question) {
@@ -92,7 +91,7 @@ class qtype_shortanssimilarity extends question_type {
     /**
      * Used to populates fields such as combined feedback.
      * also make $DB calls to get data from other tables.
-     * @param $question contains questions.
+     * @param object $question contains questions.
      * @return void.
      */
     public function get_question_options($question) {
@@ -103,8 +102,8 @@ class qtype_shortanssimilarity extends question_type {
 
     /**
      * Executed at runtime (e.g. in a quiz or preview)
-     * @param $question contains the questions.
-     * @param question_definition $questiondata contains the question data.
+     * @param question_definition $question contains the questions.
+     * @param object $questiondata contains the question data.
      * @return void.
      */
     protected function initialise_question_instance(question_definition $question, $questiondata) {
@@ -130,11 +129,11 @@ class qtype_shortanssimilarity extends question_type {
 
     /**
      * Used to import data from xml.
-     * @param $data with respect to each question id. Indexed starting from 0.
-     * @param $question contains the question.
-     * @param $format contains the format type.
-     * @param $extra.
-     * @return $question or boolval
+     * @param object $data with respect to each question id. Indexed starting from 0.
+     * @param object $question contains the question.
+     * @param qformat_xml $format contains the format type.
+     * @param string $extra.
+     * @return object $question.
      */
     public function import_from_xml($data, $question, qformat_xml $format, $extra = null) {
         if (!isset($data['@']['type']) || $data['@']['type'] != 'shortanssimilarity') {
@@ -147,10 +146,10 @@ class qtype_shortanssimilarity extends question_type {
     }
     /**
      * Used to export data from xml.
-     * @param $question contains the question.
-     * @param $format contains the format type.
-     * @param $extra.
-     * @return $ouput.
+     * @param object $question contains the question.
+     * @param qformat_xml $format contains the format type.
+     * @param string $extra.
+     * @return string $output display format =.
      */
     public function export_to_xml($question, qformat_xml $format, $extra = null) {
         global $CFG;
@@ -162,15 +161,15 @@ class qtype_shortanssimilarity extends question_type {
     }
     /**
      * Used to generate a random score.
-     * @param $questiondata contains the question data.
-     * @return 0 value.
+     * @param object $questiondata contains the question data.
+     * @return the 0 value.
      */
     public function get_random_guess_score($questiondata) {
         return 0;
     }
     /**
      * Used to generate a actual score.
-     * @param $questiondata contains the question data.
+     * @param object $questiondata contains the question data.
      * @return array containing question data.
      */
     public function get_possible_responses($questiondata) {
