@@ -52,7 +52,8 @@ class qtype_shortanssimilarity extends question_type {
     /**
      * Used to delete files.
      * @param int $questionid with respect to each question id. Indexed starting from 0
-     * @param int $oldcontextid contains old context id. Indexed starting from 0
+     * @param int $contextid contains context id. Indexed starting from 0
+     * @return void.
      */
     protected function delete_files($questionid, $contextid) {
         parent::delete_files($questionid, $contextid);
@@ -60,8 +61,9 @@ class qtype_shortanssimilarity extends question_type {
         $this->delete_files_in_hints($questionid, $contextid);
     }
     /**
-     * Used to saves questions .
+     * Used to saves questions.
      * @param $question contains questions.
+     * @return void.
      */
     public function save_question_options($question) {
         global $DB;
@@ -91,6 +93,7 @@ class qtype_shortanssimilarity extends question_type {
      * Used to populates fields such as combined feedback.
      * also make $DB calls to get data from other tables.
      * @param $question contains questions.
+     * @return void.
      */
     public function get_question_options($question) {
         global $DB;
@@ -101,7 +104,8 @@ class qtype_shortanssimilarity extends question_type {
     /**
      * Executed at runtime (e.g. in a quiz or preview)
      * @param $question contains the questions.
-     * @param $questiondata contains the question data.
+     * @param question_definition $questiondata contains the question data.
+     * @return void.
      */
     protected function initialise_question_instance(question_definition $question, $questiondata) {
         parent::initialise_question_instance($question, $questiondata);
@@ -114,7 +118,8 @@ class qtype_shortanssimilarity extends question_type {
     /**
      * Used to delete questions.
      * @param int $questionid with respect to each question id. Indexed starting from 0
-     * @param int $oldcontextid contains old context id. Indexed starting from 0
+     * @param int $contextid contains old context id. Indexed starting from 0.
+     * @return void.
      */
     public function delete_questions($questionid, $contextid) {
         global $DB;
@@ -129,6 +134,7 @@ class qtype_shortanssimilarity extends question_type {
      * @param $question contains the question.
      * @param $format contains the format type.
      * @param $extra.
+     * @return $question or boolval
      */
     public function import_from_xml($data, $question, qformat_xml $format, $extra = null) {
         if (!isset($data['@']['type']) || $data['@']['type'] != 'shortanssimilarity') {
@@ -144,6 +150,7 @@ class qtype_shortanssimilarity extends question_type {
      * @param $question contains the question.
      * @param $format contains the format type.
      * @param $extra.
+     * @return $ouput.
      */
     public function export_to_xml($question, qformat_xml $format, $extra = null) {
         global $CFG;
@@ -156,6 +163,7 @@ class qtype_shortanssimilarity extends question_type {
     /**
      * Used to generate a random score.
      * @param $questiondata contains the question data.
+     * @return 0 value.
      */
     public function get_random_guess_score($questiondata) {
         return 0;
@@ -163,6 +171,7 @@ class qtype_shortanssimilarity extends question_type {
     /**
      * Used to generate a actual score.
      * @param $questiondata contains the question data.
+     * @return array containing question data.
      */
     public function get_possible_responses($questiondata) {
         return array($questiondata->options->id => $questiondata->options->key_text);
