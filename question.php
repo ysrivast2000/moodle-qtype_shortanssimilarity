@@ -105,8 +105,8 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
 
     /**
      * Produce a plain text summar of a response
-     *
-     * @return summary a string that summarises how the user responded. This
+     * @param array $response contains the response.
+     * @return string $output summary a string that summarises how the user responded. This
      * is used in the quiz responses report
      * */
     public function summarise_response(array $response) {
@@ -120,7 +120,11 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
 
         return $output;
     }
-
+    /**
+     * Used to summarize response.
+     * @param string $summary contains the summary.
+     * @return array which is initialize.
+     */
     public function un_summarise_response(string $summary) {
         if (!empty($summary)) {
             return array('answer' => text_to_html($summary));
@@ -128,7 +132,11 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
             return array();
         }
     }
-
+    /**
+     * Used to capture matching answers.
+     * @param array $response contains the response.
+     * @return array.
+     */
     public function get_matching_answer(array $response) {
         global $DB;
 
@@ -137,7 +145,10 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
 
         return array('fraction' => $fraction);
     }
-
+    /**
+     * Used to capture matching answers.
+     * @return boolval True|False.
+     */
     public function using_chron() {
         global $DB;
 
@@ -149,7 +160,10 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
             return false;
         }
     }
-
+    /**
+     * Used to capture matching answers.
+     * @return boolval True|False.
+     */
     public function get_grade() {
         global $DB;
 
@@ -157,7 +171,11 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
         $score = $question->result * $this->defaultmark;
         return $score;
     }
-
+    /**
+     * Checks or validates the response
+     * @param array $response contains the response.
+     * @return boolval True|False.
+     */
     public function is_complete_response(array $response) {
         global $DB;
 
@@ -174,7 +192,11 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
             return false;
         }
     }
-
+    /**
+     * Checks or validates the response
+     * @param array $response contains the response.
+     * @return string
+     */
     public function get_validation_error(array $response) {
         if (!$this->is_complete_response($response)) {
             return get_string('validation_error_no_response', 'qtype_shortanssimilarity');
@@ -184,7 +206,10 @@ class qtype_shortanssimilarity_question extends question_with_responses implemen
 
         return get_string('validation_error_error', 'qtype_shortanssimilarity');
     }
-
+    /**
+     * Used to capture matching answers.
+     * @return boolval True|False.
+     */
     public function is_completed_marking() {
         global $DB;
 

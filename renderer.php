@@ -33,12 +33,12 @@ defined('MOODLE_INTERNAL') || die();
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_shortanssimilarity_renderer extends qtype_renderer {
-  /**
-   * Responsible for the formulation and control.
-   * @param question_attempt $qa.
-   * @param question_display_options $options.
-   * @return string .
-   */
+        /**
+         * Responsible for the formulation and control.
+         * @param question_attempt $qa.
+         * @param question_display_options $options.
+         * @return string $result.
+         */
     public function formulation_and_controls(question_attempt $qa,
             question_display_options $options) {
 

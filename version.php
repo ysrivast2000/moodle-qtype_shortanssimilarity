@@ -28,3 +28,4 @@ $plugin->component = 'qtype_shortanssimilarity';
 $plugin->version   = 2021040500;
 $plugin->requires  = 2012062504;
 $plugin->maturity  = MATURITY_BETA;
+$plugin->supported = [39, 310];
