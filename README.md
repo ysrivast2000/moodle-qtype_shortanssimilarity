@@ -31,6 +31,15 @@ This section explains the option to turn manual marking on or off in the questio
 
 - Automatic Marking: Does not require cron. If the manual marking option to no, then will use automatic marking. Although, load times will be drastically longer (can last 10 minutes per question, if responses are compilcated). Therefore we recommend this option be set to no, IF the answer (Key Text) is less then or equal to 2 sentences.';
 
+
+## Term of Use
+This plugin uses VIP Research Group's multi-sentence similarity calculation web service (https://ws-nlp.vipresearch.ca/). The VIP Research Group is a research group led by Prof. Maiga Chang (https://www.athabascau.ca/science-and-technology/our-people/maiga-chang.html) at School of Computing and Information Systems, Athabasca University. The "multi-sentence similarity calculation web service" is one of the research group's works. The research group does have follow-up research plan to improve it and further use it in other research projects.
+
+Almost all of Prof. Chang's works are open access (or open source). The web service (https://ws-nlp.vipresearch.ca/) is now open access and there is no plan to make it open source. The web service is open access and running on a self-sponsored server, as all of other research projects (see http://maiga.athabascau.ca/#advanced) they will be always online, improving, and accessible as long as the cost can be affordable and covered by Prof. Chang.
+
+Of course if in any case just like the access volume of the web service becoming high or any business/commercial takes advantage of using it to make money, then the term of using the web service may look for changes; for examples, donations, personal/academic/business license and subscription modes, etc. However, it is really too early to say that.
+
+
 ## License
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
